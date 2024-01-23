@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.header svg{
+    cursor: pointer;
+    color:rgb(243, 74, 103);
+    font-size: 1.5rem;
+}
+
+.header__right button{
+    color:rgb(243, 100, 100);
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+    font-size: inherit;
+    font-weight: bold;
+    margin-right:0.2rem;
+  
+}
