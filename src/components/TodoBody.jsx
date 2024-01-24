@@ -1,18 +1,19 @@
-import React from "react";
+import { useContext } from "react";
 import classes from "./TodoBody.module.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function TodoBody({
-  isDarkMode,
   todoList,
   filterId,
   onTodoRemove,
   onTodoStateChange,
 }) {
+  const theme = useContext(ThemeContext);
   return (
-    <div className={`${classes.body} ${isDarkMode && classes.dark}`}>
+    <div className={`${classes.body} ${theme === "dark" && classes.dark}`}>
       {todoList.length < 1 ? (
         <>할일을 추가하세요!</>
       ) : (
@@ -42,7 +43,7 @@ export function Todo({ todo, onTodoStateChange, onTodoRemove }) {
 
   return (
     <li className={classes.item}>
-      <div className={`${classes.todo} ${state ? classes.done : ""}`}>
+      <div className={`${classes.todo} ${state && classes.done}`}>
         <button
           onClick={() => onTodoStateChange(id)}
           className={classes.checkbox}

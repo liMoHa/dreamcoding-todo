@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   font-size: 1.2rem;
   font-weight: bold;
   /* light mode */
@@ -63,7 +63,7 @@
 }
 
 .todo.done button {
-  color: red;
+  color: rgb(181, 51, 105);
 }
 
 .todo.done button:hover {
@@ -91,7 +91,7 @@
 
 .dark button:hover {
   background-color: rgb(255, 193, 193);
-  color:rgb(69, 69, 69)
+  color: rgb(69, 69, 69);
 }
 
 .todo.done button:hover {

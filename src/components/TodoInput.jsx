@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import classes from "./TodoInput.module.css";
 
 export default function TodoInput({ isDarkMode, onSubmit }) {
@@ -17,10 +17,10 @@ export default function TodoInput({ isDarkMode, onSubmit }) {
     >
       <input
         className={classes.input}
-        placeholder="Add Todo"
-        type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        placeholder="Add Todo"
+        type="text"
       />
       <button className={classes.button}>Add</button>
     </form>
