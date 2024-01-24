@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./TodoBody.module.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
 
-export default function TodoBody({ isDarkMode, todoList, onTodoRemove }) {
+export default function TodoBody({
+  isDarkMode,
+  todoList,
+  onTodoRemove,
+  onTodoStateChange,
+}) {
   return (
     <div className={`${classes.body} ${isDarkMode && classes.dark}`}>
       <ul className={classes.list}>
@@ -14,6 +19,7 @@ export default function TodoBody({ isDarkMode, todoList, onTodoRemove }) {
             todo={todo}
             idx={idx}
             onTodoRemove={onTodoRemove}
+            onTodoStateChange={onTodoStateChange}
           />
         ))}
       </ul>
@@ -21,19 +27,18 @@ export default function TodoBody({ isDarkMode, todoList, onTodoRemove }) {
   );
 }
 
-export function Todo({ todo, onTodoRemove, idx }) {
-  const [isDone, setIsDone] = useState(false);
-
+export function Todo({ todo, onTodoStateChange, onTodoRemove, idx }) {
+  const { title, state } = todo;
   return (
     <li className={classes.item}>
-      <div className={`${classes.todo} ${isDone ? classes.done : ""}`}>
+      <div className={`${classes.todo} ${state ? classes.done : ""}`}>
         <button
-          onClick={() => setIsDone((check) => !check)}
+          onClick={() => onTodoStateChange(idx)}
           className={classes.checkbox}
         >
-          {isDone ? <FaRegSquareCheck /> : <FaRegSquare />}
+          {state ? <FaRegSquareCheck /> : <FaRegSquare />}
         </button>
-        <span>{todo}</span>
+        <span>{title}</span>
       </div>
       <button onClick={() => onTodoRemove(idx)} className={classes.trash}>
         <FaRegTrashAlt />

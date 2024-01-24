@@ -3,16 +3,16 @@ import { IoMdSunny } from "react-icons/io";
 import { IoMdMoon } from "react-icons/io";
 import classes from "./TodoHeader.module.css";
 
-export default function TodoHeader({ isDarkMode, onModeChangeClick }) {
+export default function TodoHeader({ isDarkMode, onModeChange, onTodoFilter }) {
   return (
     <header className={`${classes.header} ${isDarkMode && classes.dark}`}>
-      <button onClick={onModeChangeClick}>
+      <button onClick={onModeChange}>
         {isDarkMode ? <IoMdMoon /> : <IoMdSunny />}
       </button>
-      <div className={classes.header__right}>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+      <div onClick={onTodoFilter} className={classes.header__right}>
+        <button id="all">All</button>
+        <button id="active">Active</button>
+        <button id="completed">Completed</button>
       </div>
     </header>
   );
