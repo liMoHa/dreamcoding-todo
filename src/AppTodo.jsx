@@ -1,15 +1,30 @@
+import { useState } from "react";
 import classes from "./AppTodo.module.css";
 import TodoBody from "./components/TodoBody";
 import TodoHeader from "./components/TodoHeader";
 import TodoInput from "./components/TodoInput";
 
 function AppTodo() {
-  const isDarkMode = false;
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [todoList, setTodoList] = useState(["공부", "음악듣기", "노래"]);
+
+  const handleModeChange = () => {
+    setIsDarkMode((mode) => !mode);
+  };
+
+  const handleTodoSubmit = (input) => {
+    console.log("submit", input);
+    setTodoList((todo) => [...todo, input]);
+  };
+
   return (
     <div className={`${classes.container} ${isDarkMode && classes.dark}`}>
-      <TodoHeader isDarkMode={isDarkMode} />
-      <TodoBody isDarkMode={isDarkMode} />
-      <TodoInput isDarkMode={isDarkMode} />
+      <TodoHeader
+        isDarkMode={isDarkMode}
+        onModeChangeClick={handleModeChange}
+      />
+      <TodoBody isDarkMode={isDarkMode} todoList={todoList} />
+      <TodoInput isDarkMode={isDarkMode} onSubmit={handleTodoSubmit} />
     </div>
   );
 }
