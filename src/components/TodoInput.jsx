@@ -6,8 +6,9 @@ export default function TodoInput({ isDarkMode, onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (input.length < 1) return;
     onSubmit(input);
-    setInput("");
+    setInput(""); // 값 비우는 방법?
   };
   return (
     <form

@@ -3,15 +3,19 @@ import classes from "./AppTodo.module.css";
 import TodoBody from "./components/TodoBody";
 import TodoHeader from "./components/TodoHeader";
 import TodoInput from "./components/TodoInput";
+import { v4 as uuidv4 } from "uuid";
 
 function AppTodo() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [filterId, setFilterId] = useState(-1);
   const [todoList, setTodoList] = useState([
     {
+      id: uuidv4(),
       title: "공부",
       state: 0,
     },
     {
+      id: uuidv4(),
       title: "독서",
       state: 1,
     },
@@ -22,37 +26,26 @@ function AppTodo() {
   };
 
   const handleTodoAdd = (input) => {
-    setTodoList((todo) => [...todo, { title: input, state: 0 }]);
+    setTodoList((todo) => [...todo, { id: uuidv4(), title: input, state: 0 }]);
   };
 
-  const handleTodoRemove = (idx) => {
+  const handleTodoRemove = (id) => {
     const newTodoList = [...todoList];
-    newTodoList.splice(idx, 1);
+    const findIdx = newTodoList.findIndex((todo) => todo.id === id);
+
+    newTodoList.splice(findIdx, 1);
     setTodoList(newTodoList);
   };
 
-  //   const handleTodoFilter = (e) => {
-  //     console.log(e.target.id);
-  //     const id =  e.target.id;
-  //     const newTodoList = [...todoList]
-  //     let filteredTodoList = null;
-  //     switch (id){
-  //       case 'all':
-  //         filteredTodoList = newTodoList;
-  //         break;
-  //       case 'active':
-  //         newTodoList.filter(todo => )
-  //       case 'completed':
-  //     }
+  const handleTodoFilter = (e) => {
+    const id = Number(e.target.id);
+    setFilterId(id);
+  };
 
-  // setTodoList(filteredTodoList)
-
-  //   };
-
-  const handleTodoStateChange = (changeIdx) => {
+  const handleTodoStateChange = (id) => {
     // refactoring
-    const newTodoList = todoList.map((todo, idx) => {
-      if (idx === changeIdx) return { ...todo, state: !todo.state };
+    const newTodoList = todoList.map((todo) => {
+      if (todo.id === id) return { ...todo, state: Number(!todo.state) };
       return todo;
     });
 
@@ -64,13 +57,14 @@ function AppTodo() {
       <TodoHeader
         isDarkMode={isDarkMode}
         onModeChange={handleModeChange}
-        // onTodoFilter={handleTodoFilter}
+        onTodoFilter={handleTodoFilter}
       />
       <TodoBody
         isDarkMode={isDarkMode}
         todoList={todoList}
         onTodoStateChange={handleTodoStateChange}
         onTodoRemove={handleTodoRemove}
+        filterId={filterId}
       />
       <TodoInput isDarkMode={isDarkMode} onSubmit={handleTodoAdd} />
     </div>

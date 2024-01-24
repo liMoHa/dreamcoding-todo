@@ -10,9 +10,9 @@ export default function TodoHeader({ isDarkMode, onModeChange, onTodoFilter }) {
         {isDarkMode ? <IoMdMoon /> : <IoMdSunny />}
       </button>
       <div onClick={onTodoFilter} className={classes.header__right}>
-        <button id="all">All</button>
-        <button id="active">Active</button>
-        <button id="completed">Completed</button>
+        <button id={-1}>All</button>
+        <button id={0}>Active</button>
+        <button id={1}>Completed</button>
       </div>
     </header>
   );
