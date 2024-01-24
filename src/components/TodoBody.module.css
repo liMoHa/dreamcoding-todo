@@ -3,6 +3,7 @@
   height: 365px;
   padding: 1rem;
   margin: 1.2rem 0;
+  overflow: auto;
 }
 
 .list {
@@ -35,13 +36,18 @@
   border-radius: 0.5rem;
 }
 
-.item button:hover{
-    background-color: rgb(211, 56, 56);
+.item button:hover {
+  background-color: rgb(211, 56, 56);
 }
 
 .todo {
   display: flex;
   align-items: center;
+}
+
+.todo .donetxt {
+  text-decoration: line-through;
+  color: rgb(235, 155, 155);
 }
 
 .todo button {
