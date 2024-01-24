@@ -17,13 +17,23 @@ function AppTodo() {
     setTodoList((todo) => [...todo, input]);
   };
 
+  const handleTodoRemove = (idx) => {
+    const newTodoList = [...todoList];
+    newTodoList.splice(idx, 1);
+    setTodoList(newTodoList);
+  };
+
   return (
     <div className={`${classes.container} ${isDarkMode && classes.dark}`}>
       <TodoHeader
         isDarkMode={isDarkMode}
         onModeChangeClick={handleModeChange}
       />
-      <TodoBody isDarkMode={isDarkMode} todoList={todoList} />
+      <TodoBody
+        isDarkMode={isDarkMode}
+        todoList={todoList}
+        onTodoRemove={handleTodoRemove}
+      />
       <TodoInput isDarkMode={isDarkMode} onSubmit={handleTodoSubmit} />
     </div>
   );

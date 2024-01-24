@@ -4,19 +4,24 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
 
-export default function TodoBody({ isDarkMode, todoList }) {
+export default function TodoBody({ isDarkMode, todoList, onTodoRemove }) {
   return (
     <div className={`${classes.body} ${isDarkMode && classes.dark}`}>
       <ul className={classes.list}>
         {todoList.map((todo, idx) => (
-          <Todo key={`${todo}-${idx}`} todo={todo} />
+          <Todo
+            key={`${todo}-${idx}`}
+            todo={todo}
+            idx={idx}
+            onTodoRemove={onTodoRemove}
+          />
         ))}
       </ul>
     </div>
   );
 }
 
-export function Todo({ todo }) {
+export function Todo({ todo, onTodoRemove, idx }) {
   const [isDone, setIsDone] = useState(false);
 
   return (
@@ -30,7 +35,7 @@ export function Todo({ todo }) {
         </button>
         <span>{todo}</span>
       </div>
-      <button className={classes.trash}>
+      <button onClick={() => onTodoRemove(idx)} className={classes.trash}>
         <FaRegTrashAlt />
       </button>
     </li>
