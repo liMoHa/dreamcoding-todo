@@ -1,24 +1,41 @@
-.header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding:0 1.2rem;
-   
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.2rem;
 }
 
-.header svg{
-    cursor: pointer;
-    color:rgb(243, 74, 103);
-    font-size: 1.5rem;
+.header {
+  color: blue;
 }
 
-.header__right button{
-    color:rgb(243, 100, 100);
-    background-color: transparent;
-    border:none;
-    cursor: pointer;
-    font-size: inherit;
-    font-weight: bold;
-    margin-right:0.2rem;
-  
+.header button {
+  cursor: pointer;
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  /* light mode */
+  color: rgb(243, 74, 103);
+}
+
+.header svg {
+  display: flex;
+}
+
+.header button:hover {
+  /* light mode */
+  color: rgb(215, 0, 0);
+}
+
+.header__right button {
+  margin-right: 0.2rem;
+  font-size: inherit;
+}
+
+/* dark mode style */
+.dark button:hover {
+  color: pink;
 }

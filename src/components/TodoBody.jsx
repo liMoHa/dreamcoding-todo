@@ -4,109 +4,17 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
 
-export default function TodoBody() {
+export default function TodoBody({ isDarkMode }) {
+  const isDone = true;
   return (
-    <div className={classes.body}>
+    <div className={`${classes.body} ${isDarkMode && classes.dark}`}>
       <ul className={classes.list}>
         <li className={classes.item}>
-          <div className={classes.todo}>
+          <div className={`${classes.todo} ${isDone ? classes.done : ""}`}>
             <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
+              {isDone ? <FaRegSquareCheck /> : <FaRegSquare />}
             </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
-          </div>
-          <button className={classes.trash}>
-            <FaRegTrashAlt />
-          </button>
-        </li>
-        <li className={classes.item}>
-          <div className={classes.todo}>
-            <button className={classes.checkbox}>
-              {false ? <FaRegSquare /> : <FaRegSquareCheck color="gold" />}
-            </button>
-            <span className={false ? classes.todotxt : classes.donetxt}>
-              공부
-            </span>
+            <span>공부</span>
           </div>
           <button className={classes.trash}>
             <FaRegTrashAlt />
