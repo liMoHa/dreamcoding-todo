@@ -7,21 +7,21 @@ import { ThemeContext } from "../context/ThemeContext";
 
 export default function TodoBody({
   todoList,
-  filterId,
+  selectedMenu,
   onTodoRemove,
   onTodoStateChange,
 }) {
   const theme = useContext(ThemeContext);
   return (
-    <div className={`${classes.body} ${theme === "dark" && classes.dark}`}>
+    <section className={`${classes.body} ${theme === "dark" && classes.dark}`}>
       {todoList.length < 1 ? (
         <>할일을 추가하세요!</>
       ) : (
         <ul className={classes.list}>
           {todoList
             .filter((todo) => {
-              if (filterId === -1) return true;
-              else if (todo.state === filterId) return true;
+              if (selectedMenu === -1) return true;
+              else if (todo.state === selectedMenu) return true;
               else return false;
             })
             .map((todo) => (
@@ -34,7 +34,7 @@ export default function TodoBody({
             ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 }
 
