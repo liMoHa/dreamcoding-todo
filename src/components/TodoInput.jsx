@@ -1,19 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./TodoInput.module.css";
+import { ThemeContext } from "../context/ThemeContext";
 
-export default function TodoInput({ isDarkMode, onSubmit }) {
+import { v4 as uuidv4 } from "uuid";
+
+export default function TodoInput({ onSubmit }) {
   const [input, setInput] = useState("");
+  const theme = useContext(ThemeContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.length < 1) return;
-    onSubmit(input);
+    if (input.trim().length === 0) alert("1개 이상의 텍스트를 입력하세요!");
+    onSubmit("add", { id: uuidv4(), title: input, state: 0 });
     setInput(""); // 값 비우는 방법?
   };
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${classes.form} ${isDarkMode && classes.dark}`}
+      className={`${classes.form} ${theme === "dark" && classes.dark}`}
     >
       <input
         className={classes.input}

@@ -10,7 +10,7 @@ export default function AppTodo() {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <TodoContainer onModeChange={handleModeChange}/>
+      <TodoContainer onModeChange={handleModeChange} />
     </ThemeContext.Provider>
   );
 }

@@ -15,13 +15,15 @@ export default function TodoContainer({ onModeChange }) {
   };
 
   return (
-    <div className={`${classes.container} ${theme === "dark" && classes.dark}`}>
+    <section
+      className={`${classes.container} ${theme === "dark" && classes.dark}`}
+    >
       <TodoHeader
         onModeChange={onModeChange}
         onTodoFilter={handleTodoFilter}
         selectedMenu={selectedMenu}
       />
       <AddTodo selectedMenu={selectedMenu} />
-    </div>
+    </section>
   );
 }
