@@ -44,21 +44,17 @@ export default function AddTodo({ selectedMenu }) {
     return newTodoList;
   };
 
-  const handleTodoStateChange = (id) => {
-    const newTodoList = todoList.map((todo) => {
-      if (todo.id === id) return { ...todo, state: Number(!todo.state) };
-      return todo;
-    });
+  const handleTodoStateChange = (updated) => {
+    const newTodoList = todoList.map((todo) =>
+      todo.id === updated.id ? updated : todo
+    );
     setTodoList(newTodoList);
 
     return newTodoList;
   };
 
-  const handleTodoRemove = (id) => {
-    const newTodoList = [...todoList];
-    const findIdx = newTodoList.findIndex((todo) => todo.id === id);
-
-    newTodoList.splice(findIdx, 1);
+  const handleTodoRemove = (removed) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== removed.id);
     setTodoList(newTodoList);
 
     return newTodoList;

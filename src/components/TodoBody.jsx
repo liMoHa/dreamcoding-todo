@@ -1,13 +1,17 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import classes from "./TodoBody.module.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegSquareCheck } from "react-icons/fa6";
 import { ThemeContext } from "../context/ThemeContext";
 
-export default function TodoBody({ todoList, selectedMenu, onTodoAction, todolistRef }) {
+export default function TodoBody({
+  todoList,
+  selectedMenu,
+  onTodoAction,
+  todolistRef,
+}) {
   const theme = useContext(ThemeContext);
-  
 
   return (
     <section
@@ -34,25 +38,26 @@ export default function TodoBody({ todoList, selectedMenu, onTodoAction, todolis
 }
 
 export function Todo({ todo, onTodoAction }) {
-  const { id, title, state } = todo;
+  const { title, state } = todo;
+
+  const handleChange = () => {
+    const status = { ...todo, state: Number(!todo.state) };
+    onTodoAction("update", status);
+  };
+
+  const handleRemove = () => {
+    onTodoAction("remove", todo);
+  };
 
   return (
     <li className={classes.item}>
       <div className={`${classes.todo} ${state && classes.done}`}>
-        <button
-          onClick={() => {
-            onTodoAction("update", id);
-          }}
-          className={classes.checkbox}
-        >
+        <button onClick={handleChange} className={classes.checkbox}>
           {state ? <FaRegSquareCheck /> : <FaRegSquare />}
         </button>
         <span>{title}</span>
       </div>
-      <button
-        onClick={() => onTodoAction("remove", id)}
-        className={classes.trash}
-      >
+      <button onClick={handleRemove} className={classes.trash}>
         <FaRegTrashAlt />
       </button>
     </li>
