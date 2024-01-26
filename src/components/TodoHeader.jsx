@@ -8,40 +8,31 @@ import { ThemeContext } from "../context/ThemeContext";
 
 export default function TodoHeader({
   onModeChange,
-  onTodoFilter,
-  selectedMenu,
+  onFilterChange,
+  selectedFilter,
+  filters,
 }) {
-  const menuItems = [
-    {
-      id: -1,
-      title: "All",
-    },
-    {
-      id: 0,
-      title: "Active",
-    },
-    {
-      id: 1,
-      title: "Completed",
-    },
-  ];
-
   const theme = useContext(ThemeContext);
   const isDark = theme === "dark";
+
+  const handleFilterChange = (e) => {
+    const currentFilter = e.target.name;
+    onFilterChange(currentFilter);
+  };
 
   return (
     <header className={`${classes.header} ${isDark && classes.dark}`}>
       <button onClick={onModeChange}>
         {isDark ? <IoMdSunny /> : <IoMdMoon />}
       </button>
-      <div onClick={onTodoFilter} className={classes.header__right}>
-        {menuItems.map((item) => (
+      <div onClick={handleFilterChange} className={classes.header__right}>
+        {filters.map((filter) => (
           <button
-            key={item.id}
-            id={item.id}
-            className={`${item.id === selectedMenu && classes.selectedMenu}`}
+            name={filter}
+            key={filter}
+            className={`${filter === selectedFilter && classes.selectedFilter}`}
           >
-            {item.title}
+            {filter}
           </button>
         ))}
       </div>

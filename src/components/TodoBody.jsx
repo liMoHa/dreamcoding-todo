@@ -7,7 +7,7 @@ import { ThemeContext } from "../context/ThemeContext";
 
 export default function TodoBody({
   todoList,
-  selectedMenu,
+  selectedFilter,
   onTodoAction,
   todolistRef,
 }) {
@@ -24,9 +24,12 @@ export default function TodoBody({
         <ul className={classes.list}>
           {todoList
             .filter((todo) => {
-              if (selectedMenu === -1) return true;
-              else if (todo.state === selectedMenu) return true;
-              else return false;
+              return selectedFilter === "all"
+                ? true
+                : selectedFilter === todo.state;
+              // if (selectedFilter === "all") return true;
+              // else if (todo.state === "active") return todo.state === "active";
+              // else return false;
             })
             .map((todo) => (
               <Todo key={todo.id} todo={todo} onTodoAction={onTodoAction} />
@@ -41,8 +44,9 @@ export function Todo({ todo, onTodoAction }) {
   const { title, state } = todo;
 
   const handleChange = () => {
-    const status = { ...todo, state: Number(!todo.state) };
-    onTodoAction("update", status);
+    const state = todo.state === "active" ? "completed" : "active";
+    const newState = { ...todo, state };
+    onTodoAction("update", newState);
   };
 
   const handleRemove = () => {
@@ -51,9 +55,11 @@ export function Todo({ todo, onTodoAction }) {
 
   return (
     <li className={classes.item}>
-      <div className={`${classes.todo} ${state && classes.done}`}>
+      <div
+        className={`${classes.todo} ${state === "completed" && classes.done}`}
+      >
         <button onClick={handleChange} className={classes.checkbox}>
-          {state ? <FaRegSquareCheck /> : <FaRegSquare />}
+          {state === "active" ? <FaRegSquare /> : <FaRegSquareCheck />}
         </button>
         <span>{title}</span>
       </div>

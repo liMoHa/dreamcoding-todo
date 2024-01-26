@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import TodoBody from "../TodoBody";
 import TodoInput from "../TodoInput";
 
-export default function AddTodo({ selectedMenu }) {
+export default function AddTodo({ selectedFilter }) {
   const [todoList, setTodoList] = useState([]);
   const [action, setAction] = useState(undefined);
   const todolistRef = useRef(null);
@@ -14,7 +14,7 @@ export default function AddTodo({ selectedMenu }) {
       {
         id: uuidv4(),
         title: "할 일을 추가 하세요",
-        state: 0,
+        state: "active",
       },
     ];
     setTodoList(todo);
@@ -86,7 +86,7 @@ export default function AddTodo({ selectedMenu }) {
         todolistRef={todolistRef}
         todoList={todoList}
         onTodoAction={handleTodoAction}
-        selectedMenu={selectedMenu}
+        selectedFilter={selectedFilter}
       />
       <TodoInput onSubmit={handleTodoAction} />
     </section>

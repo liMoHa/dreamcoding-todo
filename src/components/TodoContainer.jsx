@@ -6,24 +6,20 @@ import TodoHeader from "./TodoHeader";
 import AddTodo from "./AddTodo";
 
 export default function TodoContainer({ onModeChange }) {
+  const filters = ["all", "active", "completed"];
   const theme = useContext(ThemeContext);
-  const [selectedMenu, setSelectedMenu] = useState(-1);
-
-  const handleTodoFilter = (e) => {
-    const id = Number(e.target.id);
-    setSelectedMenu(id);
-  };
-
+  const [selectedFilter, setSelectedFilter] = useState(filters[0]);
   return (
     <section
       className={`${classes.container} ${theme === "dark" && classes.dark}`}
     >
       <TodoHeader
+        filters={filters}
+        selectedFilter={selectedFilter}
+        onFilterChange={setSelectedFilter}
         onModeChange={onModeChange}
-        onTodoFilter={handleTodoFilter}
-        selectedMenu={selectedMenu}
       />
-      <AddTodo selectedMenu={selectedMenu} />
+      <AddTodo selectedFilter={selectedFilter} />
     </section>
   );
 }
