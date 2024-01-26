@@ -5,6 +5,7 @@ import TodoInput from "../TodoInput";
 
 export default function AddTodo({ selectedMenu }) {
   const [todoList, setTodoList] = useState([]);
+  const [action, setAction] = useState(undefined);
   const todolistRef = useRef(null);
 
   // 컴포넌트가 렌더링되면 localStorage에서 값을 가져옴.
@@ -19,9 +20,13 @@ export default function AddTodo({ selectedMenu }) {
     setTodoList(todo);
   }, []);
 
-  // 근데 이게 좋은 소스인지는 모르겄다..ㅎㅎ
   useEffect(() => {
-    todolistRef.current.scrollTop = todolistRef.current.scrollHeight;
+    //  값을 추가하는 경우에만 스크롤 가장 아래로 내리기
+    if (action === "add") {
+      todolistRef.current.scrollTop = todolistRef.current.scrollHeight;
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todoList]);
 
   function setToStorage(value) {
@@ -30,6 +35,7 @@ export default function AddTodo({ selectedMenu }) {
 
   const handleTodoAdd = (input) => {
     let newTodoList = null;
+
     setTodoList((todo) => {
       newTodoList = [...todo, input];
       return newTodoList;
@@ -60,6 +66,7 @@ export default function AddTodo({ selectedMenu }) {
 
   const handleTodoAction = (action, value) => {
     let newTodoList = null;
+    setAction(action);
     switch (action) {
       case "add":
         newTodoList = handleTodoAdd(value);

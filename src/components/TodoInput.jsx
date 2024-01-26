@@ -10,7 +10,10 @@ export default function TodoInput({ onSubmit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim().length === 0) alert("1개 이상의 텍스트를 입력하세요!");
+    if (input.trim().length === 0) {
+      alert("1개 이상의 텍스트를 입력하세요!");
+      return;
+    }
     onSubmit("add", { id: uuidv4(), title: input, state: 0 });
     setInput(""); // 값 비우는 방법?
   };
