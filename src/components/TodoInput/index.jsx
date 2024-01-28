@@ -7,7 +7,7 @@ import styles from "./index.module.css";
 
 export default function TodoInput({ onSubmit }) {
   const [input, setInput] = useState("");
-  const { isDarkMode } = useDarkMode;
+  const { isDarkMode } = useDarkMode();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input.trim().length === 0) {
@@ -20,7 +20,7 @@ export default function TodoInput({ onSubmit }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`${styles.form} ${isDarkMode === "dark" && styles.dark}`}
+      className={`${isDarkMode && styles.dark} ${styles.form}`}
     >
       <input
         className={styles.input}

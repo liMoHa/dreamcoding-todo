@@ -6,6 +6,7 @@ import styles from "./index.module.css";
 
 export default function TodoBody({ filteredTodos, onTodoAction, todolistRef }) {
   const { isDarkMode } = useDarkMode();
+  console.log("isDarkMode", isDarkMode);
 
   return (
     <>
@@ -15,7 +16,7 @@ export default function TodoBody({ filteredTodos, onTodoAction, todolistRef }) {
         <ul
           ref={todolistRef}
           className={`${styles.container} ${
-            isDarkMode === "dark" && styles.dark
+            isDarkMode && styles.dark
           }`}
         >
           {filteredTodos.map((todo) => (

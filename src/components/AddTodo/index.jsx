@@ -61,7 +61,6 @@ export default function AddTodo({ selectedFilter }) {
 
   // selectedFilter값이 변경될 때만 다시 계산하고 싶음.
   const filteredTodos = useMemo(() => {
-    console.log("실행");
     return getFilteredTodo(todoList, selectedFilter);
   }, [todoList, selectedFilter]);
 
