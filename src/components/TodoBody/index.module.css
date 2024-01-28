@@ -1,8 +1,7 @@
 .container {
-  overflow: auto;
-  /* light mode */
   flex: 1 1 auto;
   padding: 1rem;
+  overflow: auto;
 }
 
 .list {
@@ -20,22 +19,22 @@
   font-size: 1.2rem;
   font-weight: bold;
   /* light mode */
-  color: rgb(52, 52, 52);
+  color: var(--color-text);
 }
 
 .item button {
   display: flex;
   font-size: 1.2rem;
-  padding: 0.4rem 0.6rem;
   border-radius: 0.5rem;
+  padding: 0.2rem;
   /* light mode */
-  color: rgb(52, 52, 52);
+  color: var(--color-text);
 }
 
 .item button:hover {
   /* light mode */
-  background-color: rgb(211, 56, 56);
-  color: pink;
+  background-color: var(--color-button-hover-bg);
+  color: var(--color-accent);
 }
 
 .todo {
@@ -47,44 +46,11 @@
   margin-right: 0.5rem;
 }
 
-.todo.done {
+.todo.done span {
   text-decoration: line-through;
-  /* light mode */
-  color: rgb(251, 195, 217);
+  opacity: 0.3;
 }
 
 .todo.done button {
-  color: rgb(181, 51, 105);
-}
-
-.todo.done button:hover {
-  /* light mode */
-
-  background-color: white;
-}
-
-/* dark mode */
-.dark {
-  background-color: rgb(51, 51, 51);
-}
-
-.dark .item {
-  color: rgb(250, 218, 224);
-}
-
-.dark button {
-  color: rgb(175, 175, 175);
-}
-
-.dark .todo.done button {
-  color: rgb(255, 255, 241);
-}
-
-.dark button:hover {
-  background-color: rgb(255, 193, 193);
-  color: rgb(69, 69, 69);
-}
-
-.todo.done button:hover {
-  background-color: rgb(255, 193, 193);
+  color: var(--color-accent);
 }

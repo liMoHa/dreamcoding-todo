@@ -1,53 +1,25 @@
 .form {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
   padding: 1.2rem;
-  background-color: rgb(255, 219, 231);
+  background-color: var(--color-bg-light);
 }
 
 .input {
   width: 100%;
   padding: 1rem;
   border-radius: 1.2rem 0 0 1.2rem;
-  background-color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
 .button {
-  background-color: pink;
+  background-color: var(--color-bg);
   align-self: stretch;
   border-radius: 0 1.2rem 1.2rem 0;
   padding: 0 1.5rem;
-  color: rgb(208, 57, 57);
+  color: var(--color-accent);
   font-weight: bold;
 }
 
 .button:hover {
-  filter: brightness(95%);
-}
-
-/* dark mode */
-
-.dark{
-  background-color: rgb(17, 13, 13);
-}
-
-.dark .input {
-  background-color: rgb(0, 0, 0);
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  border-left: 1px solid white;
-}
-
-.dark .button {
-  border-right: 1px solid white;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  background-color: rgb(216, 98, 98);
-  color: rgb(250, 209, 216);
-}
-
-.dark .input {
-  color: rgb(250, 220, 225);
+  filter: brightness(110%);
 }

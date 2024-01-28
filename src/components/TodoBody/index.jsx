@@ -9,22 +9,14 @@ export default function TodoBody({ filteredTodos, onTodoAction, todolistRef }) {
   console.log("isDarkMode", isDarkMode);
 
   return (
-    <>
-      {filteredTodos.length <= 0 ? (
-        <p>할일을 추가하세요!</p>
-      ) : (
-        <ul
-          ref={todolistRef}
-          className={`${styles.container} ${
-            isDarkMode && styles.dark
-          }`}
-        >
-          {filteredTodos.map((todo) => (
-            <Todo key={todo.id} todo={todo} onTodoAction={onTodoAction} />
-          ))}
-        </ul>
-      )}
-    </>
+    <ul
+      ref={todolistRef}
+      className={`${styles.container} ${isDarkMode && styles.dark}`}
+    >
+      {filteredTodos.map((todo) => (
+        <Todo key={todo.id} todo={todo} onTodoAction={onTodoAction} />
+      ))}
+    </ul>
   );
 }
 
