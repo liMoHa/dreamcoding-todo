@@ -24,6 +24,10 @@
   font-weight: bold;
 }
 
+.button:hover {
+  filter: brightness(95%);
+}
+
 /* dark mode */
 
 .dark .input {
