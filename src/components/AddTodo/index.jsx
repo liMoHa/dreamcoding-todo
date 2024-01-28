@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TodoBody from "../TodoBody";
 import TodoInput from "../TodoInput";
+import styles from "./index.module.css";
 
 export default function AddTodo({ selectedFilter }) {
   const [todoList, setTodoList] = useState([]);
@@ -9,6 +10,8 @@ export default function AddTodo({ selectedFilter }) {
   const todolistRef = useRef(null);
 
   // 컴포넌트가 렌더링되면 localStorage에서 값을 가져옴.
+
+  //   가장 마지막에 실행
   useEffect(() => {
     const todo = JSON.parse(localStorage.getItem("todoList")) ?? [
       {
@@ -28,10 +31,6 @@ export default function AddTodo({ selectedFilter }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todoList]);
-
-  function setToStorage(value) {
-    localStorage.setItem("todoList", JSON.stringify(value));
-  }
 
   const handleTodoAdd = (input) => {
     let newTodoList = null;
@@ -60,9 +59,18 @@ export default function AddTodo({ selectedFilter }) {
     return newTodoList;
   };
 
+  // selectedFilter값이 변경될 때만 다시 계산하고 싶음.
+  const filteredTodos = useMemo(() => {
+    console.log("실행");
+    return getFilteredTodo(todoList, selectedFilter);
+  }, [todoList, selectedFilter]);
+
+  // 안에서 하는 일이 너무 많은데...
   const handleTodoAction = (action, value) => {
     let newTodoList = null;
+
     setAction(action);
+
     switch (action) {
       case "add":
         newTodoList = handleTodoAdd(value);
@@ -81,14 +89,24 @@ export default function AddTodo({ selectedFilter }) {
   };
 
   return (
-    <section>
+    <section className={styles.container}>
       <TodoBody
         todolistRef={todolistRef}
-        todoList={todoList}
+        filteredTodos={filteredTodos}
         onTodoAction={handleTodoAction}
         selectedFilter={selectedFilter}
       />
       <TodoInput onSubmit={handleTodoAction} />
     </section>
   );
+}
+
+// filtering된 값을 만들어주기
+function getFilteredTodo(todoList, filter) {
+  if (filter === "all") return todoList;
+  return todoList.filter((todo) => todo.state === filter);
+}
+
+function setToStorage(value) {
+  localStorage.setItem("todoList", JSON.stringify(value));
 }

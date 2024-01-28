@@ -3,21 +3,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1.2rem;
-}
-
-.header {
-  color: blue;
-}
-
-.header .selectedFilter {
-  text-decoration: underline;
+  padding-bottom: 1.2rem;
 }
 
 .header button {
-  cursor: pointer;
   font-size: 1.5rem;
-  background-color: transparent;
-  border: none;
   font-weight: bold;
   border-radius: 0.3rem;
   padding: 0.3rem 0.5rem;
@@ -34,9 +24,21 @@
   color: rgb(215, 0, 0);
 }
 
-.header__right button {
+.filters {
+  display: flex;
+}
+
+.filters button {
+  text-transform: capitalize;
   margin-right: 0.2rem;
   font-size: inherit;
+}
+
+.selectedFilter::after {
+  content: "";
+  /* top: 0.5rem; */
+  display: flex;
+  border: 1px solid rgb(251, 116, 116);
 }
 
 /* dark mode style */

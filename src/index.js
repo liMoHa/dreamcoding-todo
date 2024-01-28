@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import AppTodo from "./AppTodo";
+// import AppTodo from "./AppTodo";
+// import { DarkModeProvider } from "./context/DarkModeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
