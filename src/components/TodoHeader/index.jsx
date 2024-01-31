@@ -10,7 +10,6 @@ export default function TodoHeader({
   filters,
 }) {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-  console.log(isDarkMode, "isDarkMode");
 
   return (
     <header className={`${styles.header} ${isDarkMode && styles.dark}`}>

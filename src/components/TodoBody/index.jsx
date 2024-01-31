@@ -6,7 +6,6 @@ import styles from "./index.module.css";
 
 export default function TodoBody({ filteredTodos, onTodoAction, todolistRef }) {
   const { isDarkMode } = useDarkMode();
-  console.log("isDarkMode", isDarkMode);
 
   return (
     <ul
