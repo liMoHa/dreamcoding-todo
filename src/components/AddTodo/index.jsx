@@ -10,7 +10,6 @@ export default function AddTodo({ selectedFilter }) {
   const todolistRef = useRef(null);
 
   useEffect(() => {
-    //  값을 추가하는 경우에만 스크롤 가장 아래로 내리기
     if (action === "add") {
       todolistRef.current.scrollTop = todolistRef.current.scrollHeight;
     }
@@ -28,12 +27,10 @@ export default function AddTodo({ selectedFilter }) {
   const handleTodoRemove = (removed) =>
     todoList.filter((todo) => todo.id !== removed.id);
 
-  // selectedFilter값이 변경될 때만 다시 계산하고 싶음.
   const filteredTodos = useMemo(() => {
     return getFilteredTodo(todoList, selectedFilter);
   }, [todoList, selectedFilter]);
 
-  // 안에서 하는 일이 너무 많은데...
   const handleTodoAction = (action, value) => {
     let newTodoList = null;
 
