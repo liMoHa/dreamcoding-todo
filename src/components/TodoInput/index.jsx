@@ -15,7 +15,7 @@ export default function TodoInput({ onSubmit }) {
       return;
     }
     onSubmit("add", { id: uuidv4(), title: input, state: "active" });
-    setInput(""); // 값 비우는 방법?
+    setInput("");
   };
   return (
     <form
