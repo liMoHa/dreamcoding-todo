@@ -8,6 +8,11 @@
 }
 
 /* dark mode */
+
+/* :root라는 것은 html과 동일하다
+
+html.dark도 가능하다!
+*/
 :root.dark {
   --color-bg: rgb(25, 25, 25);
   --color-bg-light: rgb(69, 69, 69);

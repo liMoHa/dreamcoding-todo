@@ -11,7 +11,7 @@ export default function AddTodo({ selectedFilter }) {
 
   // 컴포넌트가 렌더링되면 localStorage에서 값을 가져옴.
 
-  //   가장 마지막에 실행
+  // 가장 마지막에 실행
   useEffect(() => {
     const todo = JSON.parse(localStorage.getItem("todoList")) ?? [
       {
